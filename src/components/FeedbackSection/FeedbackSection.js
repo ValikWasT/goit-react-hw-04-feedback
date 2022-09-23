@@ -1,16 +1,13 @@
 import React from 'react';
-import {
-  SectionBox,
-  Title,
-  Stats,
-  StatisticsTitle,
-  StatisticsList,
-  StatisticsItem,
-  StatisticsText,
-} from './FeedbackSectionStyled';
-import { Button, ButtonsBox } from 'components/FeedbackBtns/FeedbackBtnsStyled';
-// import { OptionalBtns } from 'components/FeedbackBtns/FeedbackBtns';
+import { SectionBox, Title } from './FeedbackSectionStyled';
+import { Notification } from 'components/Notification/Notification';
+import { Statistics } from 'components/FeedbackStats/FeedbackStats';
+import { OptionsBtn } from 'components/FeedbackBtns/FeedbackBtns';
 export class Section extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   state = {
     good: 0,
     neutral: 0,
@@ -32,10 +29,12 @@ export class Section extends React.Component {
       });
     }
   };
+
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
     return good + neutral + bad;
   };
+
   countPositiveFeedbackPercentage = () => {
     if (this.countTotalFeedback() === 0) {
       return 0;
@@ -46,42 +45,19 @@ export class Section extends React.Component {
   render() {
     return (
       <SectionBox>
-        <Title>Please leave feedback</Title>
-        <ButtonsBox>
-          <Button type="button" id="good" onClick={this.handleClickOnBtn}>
-            good
-          </Button>
-          <Button type="button" id="neutral" onClick={this.handleClickOnBtn}>
-            neutral
-          </Button>
-          <Button type="button" id="bad" onClick={this.handleClickOnBtn}>
-            bad
-          </Button>
-        </ButtonsBox>
-        <Stats>
-          <StatisticsTitle>Statistics</StatisticsTitle>
-          <StatisticsList>
-            <StatisticsItem>
-              <StatisticsText>Good: {this.state.good}</StatisticsText>
-            </StatisticsItem>
-            <StatisticsItem>
-              <StatisticsText>Neutral: {this.state.neutral}</StatisticsText>
-            </StatisticsItem>
-            <StatisticsItem>
-              <StatisticsText>Bad: {this.state.bad}</StatisticsText>
-            </StatisticsItem>
-            <StatisticsItem>
-              <StatisticsText>
-                Total: {this.countTotalFeedback()}
-              </StatisticsText>
-            </StatisticsItem>
-            <StatisticsItem>
-              <StatisticsText>
-                Positive feedback: {this.countPositiveFeedbackPercentage()}%{' '}
-              </StatisticsText>
-            </StatisticsItem>
-          </StatisticsList>
-        </Stats>
+        <Title>{this.props.title}</Title>
+        <OptionsBtn handleClick={this.handleClickOnBtn}></OptionsBtn>
+        {this.countTotalFeedback() !== 0 ? (
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          ></Statistics>
+        ) : (
+          <Notification message="There is no feedback"></Notification>
+        )}
       </SectionBox>
     );
   }
