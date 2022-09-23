@@ -7,7 +7,7 @@ import { OptionsBtn } from 'components/FeedbackBtns/FeedbackBtns';
 export class Section extends React.Component {
   constructor(props) {
     super(props);
-    const test = props;
+    console.log(props);
   }
 
   state = {
