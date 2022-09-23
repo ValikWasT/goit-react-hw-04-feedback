@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { SectionBox, Title } from './FeedbackSectionStyled';
 import { Notification } from 'components/Notification/Notification';
 import { Statistics } from 'components/FeedbackStats/FeedbackStats';
@@ -62,3 +63,7 @@ export class Section extends React.Component {
     );
   }
 }
+
+Section.propTypes = {
+  title: PropTypes.string.isRequired,
+};

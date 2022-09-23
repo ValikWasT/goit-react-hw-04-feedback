@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, ButtonsBox } from './FeedbackBtnsStyled';
 export const OptionsBtn = ({ handleClick }) => {
@@ -14,4 +15,8 @@ export const OptionsBtn = ({ handleClick }) => {
       </Button>
     </ButtonsBox>
   );
+};
+
+OptionsBtn.propTypes = {
+  handleClick: PropTypes.func.isRequired,
 };
