@@ -1,22 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, ButtonsBox } from './FeedbackBtnsStyled';
-export const OptionsBtn = ({ handleClick }) => {
+export const OptionsBtn = ({ handleClick, options }) => {
   return (
     <ButtonsBox>
-      <Button type="button" id="good" onClick={handleClick}>
-        Good
-      </Button>
-      <Button type="button" id="neutral" onClick={handleClick}>
-        Neutral
-      </Button>
-      <Button type="button" id="bad" onClick={handleClick}>
-        Bad
-      </Button>
+      {options.map(option => (
+        <Button key={option} id={option} type="button" onClick={handleClick}>
+          {option}
+        </Button>
+      ))}
     </ButtonsBox>
   );
 };
 
 OptionsBtn.propTypes = {
   handleClick: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
