@@ -5,6 +5,7 @@ import { Notification } from 'components/Notification/Notification';
 import { Statistics } from 'components/FeedbackStats/FeedbackStats';
 import { OptionsBtn } from 'components/FeedbackBtns/FeedbackBtns';
 export class App extends React.Component {
+  
   state = {
     good: 0,
     neutral: 0,
