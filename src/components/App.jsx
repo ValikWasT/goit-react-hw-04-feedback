@@ -10,7 +10,7 @@ export const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
-  const options = ['good', 'neutral', 'bad'];
+  const options = {good, neutral, bad};
   const handleClickOnBtn = e => {
    switch (e.target.id) {
      case 'good':
@@ -39,7 +39,7 @@ export const App = () => {
   return <SectionBox>
       
       <Section title={'Please leave feedback'}>
-        <OptionsBtn options={options} handleClick={handleClickOnBtn}></OptionsBtn>
+        <OptionsBtn options={Object.keys(options)} handleClick={handleClickOnBtn}></OptionsBtn>
       </Section>
       
       <Section>
